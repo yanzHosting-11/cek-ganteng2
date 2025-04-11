@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Cek Ganteng</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      margin-top: 10px;
+      width: 80%;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: #00d4ff;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00b8e6;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      display: none;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cek Seberapa Ganteng Kamu</h1>
+    <input type="text" id="nameInput" placeholder="Masukkan namamu...">
+    <br>
+    <button onclick="cekGanteng()">Cek!</button>
+    <div class="result" id="resultText"></div>
+  </div>
+
+  <script>
+    const sounds = [
+      'sound1.mp3',
+      'sound2.mp3',
+      'sound3.mp3'
+    ];
+
+    const hasilList = [
+      "kamu ganteng banget!",
+      "kamu cukup ganteng, lanjutkan!",
+      "kamu lumayan lah, 7/10.",
+      "hmm... coba ngaca dulu deh.",
+      "kamu bukan ganteng lagi, kamu tampan luar biasa!",
+      "astaga... kamu shining shimmering splendid!",
+      "kamu perlu tidur cukup biar makin ganteng.",
+      "kamu belum ganteng hari ini, coba besok."
+    ];
+
+    function cekGanteng() {
+      const name = document.getElementById('nameInput').value;
+      const result = document.getElementById('resultText');
+
+      if (!name.trim()) {
+        alert("Masukkan nama dulu dong!");
+        return;
+      }
+
+      // Pilih hasil dan suara random
+      const hasil = hasilList[Math.floor(Math.random() * hasilList.length)];
+      const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+
+      // Tampilkan hasil
+      result.textContent = `${name}, ${hasil}`;
+      result.style.display = 'block';
+
+      // Putar suara
+      const audio = new Audio(randomSound);
+      audio.play();
+    }
+  </script>
+</body>
+</html>
